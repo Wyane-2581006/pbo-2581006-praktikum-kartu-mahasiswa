@@ -1,5 +1,3 @@
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.util.Scanner;
 
 public class KartuMahasiswa {
@@ -8,6 +6,14 @@ public class KartuMahasiswa {
 
         System.out.print("NIK: ");
         long nik = scanner.nextLong();
+
+        //! "NOT" Membalikkan nilai yang masuk dari class ValdasiNIK, jika dikirim nilai True maka yang masuk adalah false
+        while (!ValidasiNIK.cekNIK(nik)) {
+            System.out.println("NIK harus terdiri dari 16 digit!");
+
+            System.out.print("NIK: ");
+            nik = scanner.nextLong();
+        }
         //NIK: 1234567891012131415
         //Exception in thread "main" java.util.InputMismatchException: For input string: "1234567891012131415"
         //	at java.base/java.util.Scanner.nextInt(Scanner.java:2273)
@@ -43,6 +49,16 @@ public class KartuMahasiswa {
         System.out.println("Gol. Darah : " + golongan_Darah);
         System.out.println("Menikah : " + status_Menikah);
 
+    }
+
+    //class digunakan untuk validasi nik
+    //&& "operator AND" bahwa semua nilai harus bernilai true, 1 false semua false
+    class ValidasiNIK {
+
+        public static boolean cekNIK(long nik) {
+            return nik >= 1000000000000000L
+                    && nik <= 9999999999999999L;
+        }
     }
 }
 
