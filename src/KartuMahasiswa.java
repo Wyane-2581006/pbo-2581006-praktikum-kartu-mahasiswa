@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class KartuMahasiswa {
     public static void main(String[] args) {
@@ -22,8 +23,24 @@ public class KartuMahasiswa {
         //
         //Process finished with exit code 1
 
-        System.out.print("Umur: ");
-        int umur = scanner.nextInt();
+        int umur;
+
+        while (true) {
+            try { //mencoba menjalankan dan mengecek apakah ada error
+                System.out.print("Umur: ");
+                umur = scanner.nextInt();
+
+                if (umur > 0) {
+                    break;
+                }
+
+                System.out.println("Umur harus lebih dari 0!");
+
+            } catch (InputMismatchException e) { //menangkap kode error agar program tidak langsung berhenti
+                System.out.println("Umur harus berupa integer!");
+                scanner.next(); // membuang input yang salah
+            }
+        }
 
         System.out.print("Tinggi Badan: ");
         double tinggi_Badan = scanner.nextDouble();
