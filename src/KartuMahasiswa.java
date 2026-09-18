@@ -42,8 +42,24 @@ public class KartuMahasiswa {
             }
         }
 
-        System.out.print("Tinggi Badan: ");
-        double tinggi_Badan = scanner.nextDouble();
+        double tinggi_Badan;
+
+        while (true) {
+            try {
+                System.out.print("Tinggi Badan: ");
+                tinggi_Badan = scanner.nextDouble();
+
+                if (tinggi_Badan > 0) {
+                    break;
+                }
+
+                System.out.println("Tinggi badan harus lebih dari 0!");
+
+            } catch (InputMismatchException e) {
+                System.out.println("Tinggi badan harus berupa angka!");
+                scanner.next(); // membuang input yang salah
+            }
+        }
 
         System.out.print("Golongan Darah : ");
         char golongan_Darah = scanner.next().charAt(0);
